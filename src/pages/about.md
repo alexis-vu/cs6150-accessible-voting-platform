@@ -13,5 +13,12 @@ increased access to voting-related information. In doing this, I hope to streaml
 process for these individuals and ensure they have a full and equal opportunity to participate in their
 civic right.
 
+## Lighthouse Score
+- Performance: 99
+- Accessibility: 100
+- Best Practices: 100
+- SEO: 100
+- Overall Average: 0.9975/1.0
+
 ## Team
 Alexis Vu - Developer and Project Manager
