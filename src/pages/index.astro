@@ -18,6 +18,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
+<!--<link rel="stylesheet" type="text/css" href="/vit.css"/>-->
+<link rel="stylesheet" type="text/css" href="https://votinginfotool.org/css/compiled/vit.css"/>
+<script is:inline src="/app.js"></script>
 
 <Layout>
   <Header />
@@ -29,17 +32,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         Welcome! For more info, please check out the About page.
       </p>
 
-      <!-- Address Search Form -->
-      <!--<form id="address-form">-->
-      <!--  <label for="address">Enter your address:</label>-->
-      <!--  <input type="text" id="address" name="address" placeholder="Enter address" />-->
-      <!--  <button type="submit">Search</button>-->
-      <!--</form>-->
-
       <!-- Voting Information Tool -->
-      <div id="vit-size-container" class="vit-size-container" style="width: 100%; height: 100%;">
-        <div id="_vit"></div>
-      </div>
+      <div class="override_text" id="_vit" style="width: 100%; height: 480px;"></div>
 
     </section>
 
@@ -49,25 +43,28 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 </Layout>
 
 <!-- Embed Voting Information Tool -->
-<link rel="stylesheet" type="text/css" href="https://votinginfotool.org/css/compiled/vit.css"/>
-<script src="https://votinginfotool.org/js/compiled/app.js"></script>
 <script>
   var config = {
+    "title": {"en":"Voting Information Tool"},
     "embedded-line1": {"en":"Find out where to vote."},
     "embedded-line2-hidden": true,
     "embedded-line3-hidden": true,
-    "logo": {"type":"none"},
+    "logo": {"type":"default"},
     "official-only": true
-  };
+    };
+    var loadVIT = function () {
+      if (typeof vit !== 'undefined'){
+        vit.core.init("_vit", config);
+        } else {
+        setTimeout(loadVIT, 500);
+        }
+      };
 
-  var loadVIT = function () {
-    if (typeof vit !== 'undefined'){
-      vit.core.init("_vit", config);
-    } else {
-      setTimeout(loadVIT, 500);
-    }
-  };
-  loadVIT();
+    // Wait until the entire page (and external scripts) is loaded before initializing VIT
+    window.addEventListener('load', function() {
+      loadVIT();
+      });
+
 </script>
 
 <!-- Google Places and Civic Information API Script -->
@@ -135,34 +132,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <!--  };-->
 <!--</script>-->
 
-<!--<link rel="stylesheet" type="text/css" href="https://votinginfotool.org/css/compiled/vit.css"/>-->
-<!--<script src="https://votinginfotool.org/js/compiled/app.js"></script>-->
-<!--<div id="vit-size-container" class="vit-size-container" style="width: 100%; height: 100%;">-->
-<!--  <div id="_vit"></div>-->
-<!--</div>-->
-<!--<script>-->
-<!--  var config = {-->
-<!--    "embedded-line1": {"en":"Find out where to vote."},-->
-<!--    "embedded-line2-hidden": true,-->
-<!--    "embedded-line3-hidden": true,-->
-<!--    "logo": {"type":"none"},-->
-<!--    "official-only": true-->
-<!--  };-->
-<!--  var loadVIT = function () {-->
-<!--    if (typeof vit !== 'undefined'){-->
-<!--      vit.core.init("_vit", config);-->
-<!--    } else {-->
-<!--      setTimeout(loadVIT, 500);-->
-<!--    };-->
-<!--  };-->
-<!--  loadVIT();-->
-<!--</script>-->
-
 <style>
-  /* Custom styling for the Voting Information Tool (VIT) */
-  #vit-size-container {
-      margin-top: 2rem;
+  #_vit__main-panel * {
+      font-family: IBM Plex Mono, monospace !important;
   }
+
   /* ===== Hero Section ===== */
   #hero {
     @apply pb-6 pt-8;
@@ -198,4 +172,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .all-posts-btn-wrapper {
     @apply my-8 text-center;
   }
+
+
 </style>
