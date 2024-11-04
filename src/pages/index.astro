@@ -1,22 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import { SITE, SOCIALS } from "@config";
 
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-
-const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 <!--<link rel="stylesheet" type="text/css" href="/vit.css"/>-->
 <link rel="stylesheet" type="text/css" href="https://votinginfotool.org/css/compiled/vit.css"/>
@@ -27,7 +13,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <main id="main-content">
     <section id="hero">
       <h1>Accessible Voting Platform</h1>
-
       <p>
         Welcome! For the survey link or more info, please check out the About page.
       </p>
@@ -67,71 +52,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 </script>
 
-<!-- Google Places and Civic Information API Script -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTZXc4AZ6jNUz66g3znltxOO5UbhROa-M&libraries=places"></script>-->
-<!--<script>-->
-<!--  // Initialize Google Places Autocomplete for the address input field-->
-<!--  function initAutocomplete() {-->
-<!--    const addressInput = document.getElementById('address');-->
-<!--    const autocomplete = new google.maps.places.Autocomplete(addressInput);-->
-
-<!--    autocomplete.setFields(['address_components', 'geometry']);-->
-
-<!--    // When a place is selected, fetch details-->
-<!--    autocomplete.addListener('place_changed', function() {-->
-<!--      const place = autocomplete.getPlace();-->
-<!--      console.log('Place details:', place); // You can use this to get address details if needed-->
-<!--    });-->
-<!--  }-->
-
-<!--  // Fetch polling locations from the Google Civic Information API-->
-<!--  async function getPollingLocations(address) {-->
-<!--    const apiKey = 'AIzaSyCv_ndkQGpFSPIOc-cb0VU-vwTFbBBi_oc';-->
-<!--    // const url = `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${apiKey}&address=${encodeURIComponent(address)}&electionId=9000`;-->
-<!--    const url = `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${apiKey}&address=${encodeURIComponent(address)}&electionId=2000`;-->
-
-<!--    try {-->
-<!--      const response = await fetch(url);-->
-<!--      const data = await response.json();-->
-<!--      displayPollingLocations(data);-->
-<!--    } catch (error) {-->
-<!--      console.error('Error fetching polling locations:', error);-->
-<!--    }-->
-<!--  }-->
-
-<!--  // Display the polling locations or relevant data in the div-->
-<!--  function displayPollingLocations(data) {-->
-<!--    const pollingInfoDiv = document.getElementById('polling-info');-->
-
-<!--    if (data && data.pollingLocations && data.pollingLocations.length > 0) {-->
-<!--      // Example of showing polling location data-->
-<!--      const locationsHtml = data.pollingLocations.map(location => `-->
-<!--        <div>-->
-<!--          <h3>Polling Location: ${location.address.locationName}</h3>-->
-<!--          <p>Address: ${location.address.line1}, ${location.address.city}, ${location.address.state}, ${location.address.zip}</p>-->
-<!--        </div>-->
-<!--      `).join('');-->
-
-<!--      pollingInfoDiv.innerHTML = locationsHtml;-->
-<!--    } else {-->
-<!--      pollingInfoDiv.innerHTML = '<p>No polling locations found for this address.</p>';-->
-<!--    }-->
-<!--  }-->
-
-<!--  // Handle the form submission-->
-<!--  const form = document.getElementById('address-form');-->
-<!--  form.addEventListener('submit', function (event) {-->
-<!--    event.preventDefault();-->
-<!--    const address = document.getElementById('address').value;-->
-<!--    getPollingLocations(address);-->
-<!--  });-->
-
-<!--  // Initialize the Google Places Autocomplete when the page loads-->
-<!--  window.onload = function() {-->
-<!--    initAutocomplete();-->
-<!--  };-->
-<!--</script>-->
-
 <style>
   #_vit__main-panel * {
       font-family: IBM Plex Mono, monospace !important;
@@ -142,7 +62,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-6 pt-8;
   }
   #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-4xl content-center;
   }
   #hero .rss-link {
     @apply mb-6;

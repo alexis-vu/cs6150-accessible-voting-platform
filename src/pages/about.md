@@ -24,11 +24,11 @@ In the meantime, you may use this address to see how results are displayed: 4121
 [Survey Link](https://forms.office.com/r/My4kfG1sPG)
 
 ## Lighthouse Score
-- Performance: 99
+- Performance: 80
 - Accessibility: 100
-- Best Practices: 100
-- SEO: 100
-- Overall Average: 0.9975/1.0
+- Best Practices: 78
+- SEO: 92
+- Overall Average:  87.5
 
 ## Team
 Alexis Vu - Developer and Project Manager
